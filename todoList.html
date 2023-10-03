@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Todo Lst | Vue js</title>
     <link rel="stylesheet" href="todolist.css">
-    <script src="vue.js"></script>
+    <script src="vue.3.js"></script>
 </head>
 
 <body>
@@ -15,7 +15,7 @@
     <div id="app">
         <div class="container">
             <h1>My To Do List</h1>
-            <input type="text" v-model="todo" placeholder="Tape Here your thing to do" @keyup.enter="addTodoElement">
+            <input type="text" v-model="todo" @keyup.enter="addTodoElement" placeholder="Tape Here your thing to do">
             <button @click="addTodoElement" :disabled="!todo.length">Add</button>
             <hr>
             <ol>
@@ -27,20 +27,21 @@
     </div>
 </body>
 <script>
-    var app = new Vue({
-        el: '#app',
-        data: {
-            todo: '',
-            todos: []
+    var { createApp } = Vue
+    createApp({
+        data() {
+            return {
+                todo: '',
+                todos: []
+            }
         },
         methods: {
             addTodoElement: function () {
                 this.todos.push(this.todo);
                 this.todo = ""
             }
-
         }
-    });
+    }).mount('#app')
 </script>
 
 </html>
